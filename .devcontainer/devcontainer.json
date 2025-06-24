@@ -1,0 +1,54 @@
+{
+  // Nom affiché dans VS Code pour ce Dev Container
+  "name": "dbt-postgres-training",
+
+  // Configuration pour construire l’image Docker custom de dev (avec dbt installé)
+  "build": {
+    "context": ".",           // Chemin vers le dossier où se trouve le Dockerfile
+    "dockerfile": "Dockerfile" // Nom du Dockerfile utilisé pour builder l’image
+  },
+  "runArgs": [
+    "--env-file", ".devcontainer/.env"
+  ],
+  // Dossier de travail à l’intérieur du conteneur
+  "workspaceFolder": "/workspace",
+
+  // Montre le dossier local dans le conteneur à /workspace (bind mount)
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+
+  // Personnalisation de l’environnement VS Code dans le conteneur
+  "customizations": {
+    "settings": {
+      // Active le formatage auto à la sauvegarde
+      "editor.formatOnSave": true,
+      // Associe les fichiers dbt/YAML à Jinja pour meilleure coloration syntaxique
+      "files.associations": {
+        "*.sql": "jinja-sql",
+        "*.yml": "jinja-yaml",
+        "*.yaml": "jinja-yaml",
+        "dbt_project.yml": "jinja-yaml"
+      }
+    },
+    "vscode": {
+      // Extensions VS Code à installer automatiquement dans le conteneur
+      "extensions": [
+        "ms-python.python",                    // Support Python
+        "redhat.vscode-yaml",                  // Support YAML
+        "innoverio.vscode-dbt-power-user",     // Extension dbt
+        "sqlfluff.sqlfluff",                   // Linter SQL
+        "samuelcolvin.jinjahtml",              // Support Jinja
+        "eamodio.gitlens"                      // Outils Git avancés
+      ]
+    }
+  },
+  "mounts": [
+    "source=dbt_pgdata,target=/var/lib/postgresql/15/main,type=volume"
+  ],
+  // Commande exécutée juste après création du conteneur (init BDD PostgreSQL)
+  "postCreateCommand": "sudo -u postgres pg_ctlcluster 15 main start && (sudo -u postgres psql -tc \"SELECT 1 FROM pg_database WHERE datname = 'dbt_training_dev'\" | grep -q 1 || sudo -u postgres psql -c \"CREATE DATABASE dbt_training_dev;\") && (sudo -u postgres psql -tc \"SELECT 1 FROM pg_database WHERE datname = 'dbt_training_prod'\" | grep -q 1 || sudo -u postgres psql -c \"CREATE DATABASE dbt_training_prod;\") && (sudo -u postgres psql -tc \"SELECT 1 FROM pg_roles WHERE rolname = 'dbt_user'\" | grep -q 1 || sudo -u postgres psql -c \"CREATE USER dbt_user WITH PASSWORD 'strong_password';\") && sudo -u postgres psql -c \"GRANT ALL PRIVILEGES ON DATABASE dbt_training_dev TO dbt_user;\" && sudo -u postgres psql -c \"GRANT ALL PRIVILEGES ON DATABASE dbt_training_prod TO dbt_user;\" && sudo -u postgres psql -d dbt_training_dev -c \"GRANT ALL ON SCHEMA public TO dbt_user;\" && sudo -u postgres psql -d dbt_training_prod -c \"GRANT ALL ON SCHEMA public TO dbt_user;\"",
+  "postStartCommand": "sudo -u postgres pg_ctlcluster 15 main start  || true",
+
+
+  // Utilisateur par défaut dans le conteneur
+  "remoteUser": "vscode"
+}
