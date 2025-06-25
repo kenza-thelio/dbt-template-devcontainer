@@ -7,6 +7,10 @@ RUN apt-get update && apt-get install -y \
     postgresql-15 postgresql-client-15 postgresql-contrib-15 \
  && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+ # Configurer PostgreSQL pour autoriser les connexions extérieures
+RUN echo "listen_addresses = '*'" >> /etc/postgresql/15/main/postgresql.conf && \
+    echo "host all all all md5" >> /etc/postgresql/15/main/pg_hba.conf
+
 # Installer dbt-postgres
 RUN pip install --no-cache-dir dbt-postgres
 
