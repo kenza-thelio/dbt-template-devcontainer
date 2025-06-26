@@ -39,8 +39,7 @@
         "samuelcolvin.jinjahtml",              // Support Jinja
         "eamodio.gitlens",                      // Outils Git avancés
         "ms-azuretools.vscode-docker",
-        "ms-python.python",
-        "ms-databasetools.vscode-postgresql"
+        "cweijan.vscode-postgresql-client2"
       ]
     }
   },
