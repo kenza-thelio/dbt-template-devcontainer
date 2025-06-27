@@ -38,7 +38,7 @@ L’extension **PostgreSQL de VSCode** est préinstallée dans le container afin
 
 ### Démarrer le projet
 
-S'assurer d’avoir **Docker** et **VS Code** installés, puis :
+S'assurer d’avoir **Docker** et **VS Code** et l'extension **Dev Containers** installés, puis :
 
 1. Ouvrir le repo dans VS Code
 2. Cliquer sur `Reopen in Container` (ou `Dev Containers: Reopen in Container` dans la palette de commande)
