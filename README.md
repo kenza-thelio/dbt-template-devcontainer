@@ -33,6 +33,7 @@ Lors du démarrage :
 
 L’extension **PostgreSQL de VSCode** est préinstallée dans le container afin visualiser les bases, schémas et tables sans configuration supplémentaire.
 
+
 ---
 
 ### Démarrer le projet
@@ -42,6 +43,32 @@ S'assurer d’avoir **Docker** et **VS Code** installés, puis :
 1. Ouvrir le repo dans VS Code
 2. Cliquer sur `Reopen in Container` (ou `Dev Containers: Reopen in Container` dans la palette de commande)
 3. Patienter quelques minutes pendant l’installation automatique
+
+---
+### Connexion à PostgreSQL via l’extension VS Code
+
+Pour se connecter :
+
+1. Ouvrir le panneau **PostgreSQL** dans la barre latérale de VS Code (icône base de données)
+2. Cliquer sur **"Ajouter une nouvelle connexion"**
+3. Renseigner les informations suivantes :
+
+| Champ            | Valeur                 |
+|------------------|------------------------|
+| **Hôte**         | `localhost`            |
+| **Port**         | `5432`                 |
+| **Utilisateur**  | `dbt_user`             |
+| **Mot de passe** | `strong_password`      |
+| **Base**         | `dbt_training_dev`     |
+
+4. Cliquer sur **Connecter**
+
+Vous pouvez ensuite explorer les schémas et tables directement dans l’interface VS Code.
+
+> Les schémas de données sources sont `raw_jaffle_shop` et `raw_stripe`.
+
+---
+
 
 L’environnement est prêt !
 
