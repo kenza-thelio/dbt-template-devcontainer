@@ -1,18 +1,48 @@
-# Environnement de développement dbt + PostgreSQL
+## 🐳 Dev Container intégré
 
-Ce repo contient un conteneur de développement prêt à l’emploi pour travailler avec dbt et PostgreSQL sans aucune installation locale.
+Ce projet inclut un **Dev Container** prêt à l’emploi pour simplifier le setup de l’environnement de développement de la formation dbt.
 
-## Prérequis
+### Fonction du Dev Container
 
-- [VS Code](https://code.visualstudio.com/)
-- Extension [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-- [Docker](https://www.docker.com/)
+Un *Dev Container* est un environnement de développement défini dans un fichier `devcontainer.json`, utilisé avec **Visual Studio Code** et **Docker**.  
+Il permet de coder dans un conteneur isolé, avec tous les outils et dépendances déjà installés.
 
-## Démarrage rapide
+---
 
-1. Utiliser ce repository :
+### Ce que fait le Dev Container dans ce repo
 
-Use this template > Create a new repository
+Lors du démarrage :
 
-2. Ouvrir le dossier avec VS Code
-(VS Code devrait proposer automatiquement : "Reopen in Container")
+1. Il installe :
+   - Python 3.11
+   - PostgreSQL 15 (client + serveur)
+   - `dbt-postgres`
+   - Extensions utiles de VS Code (YAML, dbt, SQLFluff, PostgreSQL, etc.)
+
+2. Il initialise PostgreSQL automatiquement via un script `.devcontainer/init_postgres.sh` :
+   - Création des bases `dbt_training_dev` et `dbt_training_prod`
+   - Création de l’utilisateur `dbt_user`
+   - Création des schémas `raw_jaffle_shop` et `raw_stripe`
+   - Insertion de données depuis depuis un bucket S3
+
+3. Il expose PostgreSQL sur le port `5432`.
+
+---
+
+### Extension PostgreSQL
+
+L’extension **PostgreSQL de VSCode** est préinstallée dans le container afin visualiser les bases, schémas et tables sans configuration supplémentaire.
+
+---
+
+### Démarrer le projet
+
+S'assurer d’avoir **Docker** et **VS Code** installés, puis :
+
+1. Ouvrir le repo dans VS Code
+2. Cliquer sur `Reopen in Container` (ou `Dev Containers: Reopen in Container` dans la palette de commande)
+3. Patienter quelques minutes pendant l’installation automatique
+
+L’environnement est prêt !
+
+---
