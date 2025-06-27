@@ -52,6 +52,7 @@
   "postStartCommand": "sudo -u postgres pg_ctlcluster 15 main start  || true",
 
 
-  // Utilisateur par défaut dans le conteneur
+  // Utilisateur par défaut dans le conteneur.
   "remoteUser": "vscode"
 }
+
