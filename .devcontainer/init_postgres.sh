@@ -58,9 +58,9 @@ EOF
 
 # 7. Telecharger les fichiers CSV
 mkdir -p /tmp/jaffle_data
-curl -s -o /tmp/jaffle_data/jaffle_shop_customers.csv https://dbt-tutorial-public.s3.amazonaws.com/jaffle_shop_customers.csv
-curl -s -o /tmp/jaffle_data/jaffle_shop_orders.csv https://dbt-tutorial-public.s3.amazonaws.com/jaffle_shop_orders.csv
-curl -s -o /tmp/jaffle_data/stripe_payments.csv https://dbt-tutorial-public.s3.amazonaws.com/stripe_payments.csv
+curl -k -s -o /tmp/jaffle_data/jaffle_shop_customers.csv https://dbt-tutorial-public.s3.amazonaws.com/jaffle_shop_customers.csv
+curl -k -s -o /tmp/jaffle_data/jaffle_shop_orders.csv https://dbt-tutorial-public.s3.amazonaws.com/jaffle_shop_orders.csv
+curl -k -s -o /tmp/jaffle_data/stripe_payments.csv https://dbt-tutorial-public.s3.amazonaws.com/stripe_payments.csv
 
 # 8. Inserer les donnees
 echo "? Chargement des donnees..."
