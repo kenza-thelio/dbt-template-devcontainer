@@ -31,7 +31,7 @@ Lors du démarrage :
 
 ### Extension PostgreSQL
 
-L’extension **PostgreSQL de VSCode** est préinstallée dans le container afin visualiser les bases, schémas et tables sans configuration supplémentaire.
+L’extension **PostgreSQL de VSCode** est préinstallée dans le container afin visualiser les bases, schémas et tables sans configuration supplémentaire. 
 
 
 ---
@@ -46,6 +46,8 @@ S'assurer d’avoir **Docker** et **VS Code** et l'extension **Dev Containers** 
 
 ---
 ### Connexion à PostgreSQL via l’extension VS Code
+
+Si l'installation de l'extension ne se fait pas au build du conteneur, l'installer manuellement depuis la section extension de VSCode (identifier: cweijan.vscode-postgresql-client2).
 
 Pour se connecter :
 
