@@ -48,7 +48,7 @@
   ],
   "forwardPorts": [5432],
   // Commande exécutée juste après création du conteneur (init BDD PostgreSQL)
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y dos2unix && dos2unix .devcontainer/init_postgres.sh && bash .devcontainer/init_postgres.sh",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y dos2unix && sudo dos2unix .devcontainer/init_postgres.sh && sudo bash .devcontainer/init_postgres.sh",
   "postStartCommand": "sudo -u postgres pg_ctlcluster 15 main start  || true",
 
 
